@@ -4,10 +4,11 @@ import {Image, List, ListItem, Spinner, Text, HStack, Button} from '@chakra-ui/r
 import getCroppedImageUrl from "../services/image-url";
 
 interface Props {
-    onSelectedGenre: (genre: Genre) => void
+    onSelectedGenre: (genre: Genre) => void,
+    selectedGenre: Genre | null
 }
 
-function GenreList({onSelectedGenre}: Props) {
+function GenreList({onSelectedGenre, selectedGenre}: Props) {
     const {data, isLoading, error} = useGenres();
 
     if (error)
@@ -23,7 +24,11 @@ function GenreList({onSelectedGenre}: Props) {
                     <ListItem key={genre.id} paddingY="5px">
                         <HStack>
                             <Image src={getCroppedImageUrl(genre.image_background)} boxSize="32px" borderRadius={8}/>
-                            <Button onClick={() => onSelectedGenre(genre)} fontSize="lg" variant="link">{genre.name}</Button>
+                            <Button
+                                onClick={() => onSelectedGenre(genre)}
+                                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                                variant="link"
+                            >{genre.name}</Button>
                         </HStack>
                     </ListItem>)}
             </List>
