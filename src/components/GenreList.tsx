@@ -5,10 +5,10 @@ import getCroppedImageUrl from "../services/image-url";
 
 interface Props {
     onSelectedGenre: (genre: Genre) => void,
-    selectedGenre: Genre | null
+    selectedGenreId?: number
 }
 
-function GenreList({onSelectedGenre, selectedGenre}: Props) {
+function GenreList({onSelectedGenre, selectedGenreId}: Props) {
     const {data, isLoading, error} = useGenres();
 
     if (error)
@@ -30,7 +30,7 @@ function GenreList({onSelectedGenre, selectedGenre}: Props) {
                                 textAlign="left"
                                 onClick={() => onSelectedGenre(genre)}
                                 objectFit="cover"
-                                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                                fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
                                 variant="link"
                             >{genre.name}</Button>
                         </HStack>
