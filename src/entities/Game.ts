@@ -1,9 +1,6 @@
 import {Platform} from "./Platform";
 import {Genre} from "./Genre";
-
-export interface Publisher {
-    name: string
-}
+import {Publisher} from "./Publisher";
 
 export interface Game {
     id: number,
