@@ -1,9 +1,20 @@
+import {Heading, Spinner, Text } from '@chakra-ui/react';
 import React from 'react';
+import {useParams} from "react-router-dom";
+import useGame from "../hooks/useGame";
 
 function GameDetailPage() {
+    const {slug} = useParams();
+    const {data: game, isLoading, error} = useGame(slug!);
+
+    if(isLoading) return <Spinner/>;
+
+    if(error || !game) throw error;
+
     return (
         <>
-            Hello World
+            <Heading>{game.name}</Heading>
+            <Text>{game.description_raw}</Text>
         </>
     );
 }
