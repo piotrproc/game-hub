@@ -4,12 +4,12 @@ import {Trailer} from "../entities/Trailer";
 
 
 
-const useTrailers = (gameId: string) => {
-    const apiClient = new APIClient<Trailer>(`/games`);
+const useTrailers = (gameId: string|number) => {
+    const apiClient = new APIClient<Trailer>(`/games/${gameId}/movies`);
 
     return useQuery({
         queryKey: ["trailers", gameId],
-        queryFn: () => apiClient.get(gameId, "movies"),
+        queryFn: apiClient.getAll,
     });
 }
 
