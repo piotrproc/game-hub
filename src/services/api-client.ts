@@ -26,13 +26,9 @@ class APIClient<T> {
             .then(res => res.data);
     }
 
-    get = (id: number | string, suffix?: string) => {
-        let url = this.endpoint + "/" + id;
-        if(suffix)
-            url = url + "/" + suffix;
-
+    get = (id: number | string) => {
         return axiosInstance
-            .get<T>(url)
+            .get<T>(this.endpoint + "/" + id)
             .then(res => res.data);
     }
 }
