@@ -11,9 +11,12 @@ function GameScreenshots({gameId}: Props) {
 
     if (!screenshots) return null;
 
+    if (isLoading) return null;
+    if (error) throw error;
+
     return (
         <>
-            <SimpleGrid columns={{sm: 1, md: 2}}>
+            <SimpleGrid columns={{base: 1, md: 2}} spacing={2}>
                 {screenshots.results.map(s => <Image src={s.image} key={s.id}/>)}
             </SimpleGrid>
         </>
