@@ -19,8 +19,6 @@ function GameTrailer({gameId}: Props) {
     const trailerUrl = first.data[480];
     const poster = first.preview;
 
-    console.log(trailers)
-
     return (
         <>
             <video
